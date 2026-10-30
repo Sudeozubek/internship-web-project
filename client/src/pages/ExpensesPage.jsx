@@ -1,5 +1,5 @@
 import { useCallback, useEffect, useMemo, useState } from "react";
-import { Link } from "react-router-dom";
+import { Link, useLocation, useNavigate } from "react-router-dom";
 import { Plus, Pencil, Trash2 } from "lucide-react";
 import ExpenseForm from "../components/ExpenseForm";
 import { ALL_CATEGORIES_FILTER, CATEGORIES } from "../constants";
@@ -12,6 +12,8 @@ import {
 } from "../services/expensesApi";
 
 export default function ExpensesPage() {
+  const location = useLocation();
+  const navigate = useNavigate();
   const [expenses, setExpenses] = useState([]);
   const [loading, setLoading] = useState(true);
   const [error, setError] = useState("");
@@ -38,6 +40,14 @@ export default function ExpensesPage() {
   useEffect(() => {
     loadExpenses();
   }, [loadExpenses]);
+
+  // Dashboard'daki "Harcama ekle" buraya yönlendirir; formu tek yerde tutuyorum.
+  useEffect(() => {
+    if (location.state?.openAddModal) {
+      setModalOpen(true);
+      navigate("/expenses", { replace: true, state: {} });
+    }
+  }, [location.state, navigate]);
 
   const filtered = useMemo(
     () => filterExpenses(expenses, { search, category: categoryFilter }),

@@ -1,5 +1,6 @@
 import { useEffect, useState } from "react";
 import { Link } from "react-router-dom";
+import { Plus } from "lucide-react";
 import { fetchExpenses, getErrorMessage } from "../services/expensesApi";
 import {
   formatMoney,
@@ -63,9 +64,19 @@ export default function DashboardPage() {
 
   return (
     <div className="space-y-8">
-      <div>
-        <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
-        <p className="mt-1 text-sm text-slate-500">Harcama özetin tek bakışta.</p>
+      <div className="flex flex-wrap items-start justify-between gap-4">
+        <div>
+          <h1 className="text-2xl font-semibold text-slate-900">Dashboard</h1>
+          <p className="mt-1 text-sm text-slate-500">Harcama özetin tek bakışta.</p>
+        </div>
+        <Link
+          to="/expenses"
+          state={{ openAddModal: true }}
+          className="inline-flex items-center gap-2 rounded-lg bg-emerald-600 px-4 py-2 text-sm font-medium text-white hover:bg-emerald-700"
+        >
+          <Plus className="h-4 w-4" />
+          Harcama ekle
+        </Link>
       </div>
 
       <div className="grid gap-4 sm:grid-cols-2 lg:grid-cols-3">
@@ -87,7 +98,16 @@ export default function DashboardPage() {
         <section className="rounded-xl border border-slate-200 bg-white p-5 shadow-sm">
           <h2 className="text-lg font-semibold text-slate-900">Kategoriye göre</h2>
           {categoryGroups.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500">Henüz harcama yok.</p>
+            <p className="mt-4 text-sm text-slate-500">
+              Henüz harcama yok.{" "}
+              <Link
+                to="/expenses"
+                state={{ openAddModal: true }}
+                className="font-medium text-emerald-600 hover:underline"
+              >
+                İlk kaydı ekle
+              </Link>
+            </p>
           ) : (
             <ul className="mt-4 space-y-3">
               {categoryGroups.map(([category, amount]) => (
@@ -118,7 +138,16 @@ export default function DashboardPage() {
             </Link>
           </div>
           {recent.length === 0 ? (
-            <p className="mt-4 text-sm text-slate-500">Henüz harcama yok.</p>
+            <p className="mt-4 text-sm text-slate-500">
+              Henüz harcama yok.{" "}
+              <Link
+                to="/expenses"
+                state={{ openAddModal: true }}
+                className="font-medium text-emerald-600 hover:underline"
+              >
+                Harcama ekle
+              </Link>
+            </p>
           ) : (
             <ul className="mt-4 divide-y divide-slate-100">
               {recent.map((item) => (
