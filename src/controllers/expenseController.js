@@ -13,6 +13,17 @@ const {
  * id, createdAt, updatedAt body'den okunmaz; sunucu yönetir.
  */
 function validateExpenseBody(body) {
+  // Gövde yoksa (Postman/curl'de JSON unutulmuşsa) 500 yerine anlaşılır 400 döneyim.
+  if (body === undefined || body === null) {
+    return {
+      error: {
+        status: 400,
+        message:
+          "İstek gövdesi (JSON) gerekli. Header: Content-Type: application/json",
+      },
+    };
+  }
+
   const { title, amount, category, description, date } = body;
 
   if (typeof title !== "string" || title.trim() === "") {
@@ -21,7 +32,17 @@ function validateExpenseBody(body) {
     };
   }
 
-  if (typeof amount !== "number" || amount <= 0) {
+  // Postman'de amount bazen "45" string gelir; sayıya çevirip kontrol ediyorum.
+  let numericAmount = amount;
+  if (typeof amount === "string" && amount.trim() !== "") {
+    numericAmount = Number(amount);
+  }
+
+  if (
+    typeof numericAmount !== "number" ||
+    Number.isNaN(numericAmount) ||
+    numericAmount <= 0
+  ) {
     return {
       error: { status: 400, message: "amount pozitif bir sayı olmalıdır." },
     };
@@ -48,9 +69,9 @@ function validateExpenseBody(body) {
   return {
     payload: {
       title: title.trim(),
-      amount,
+      amount: numericAmount,
       category: category.trim(),
-      description,
+      description: typeof description === "string" ? description : "",
       date: date.trim(),
     },
   };

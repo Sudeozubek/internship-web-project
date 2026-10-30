@@ -4,8 +4,40 @@
 
 1. Proje klasöründe `npm install` (ilk kez).
 2. `npm start` — terminalde `Spendly API dinleniyor: http://localhost:3000` görünmeli.
-3. Postman'de koleksiyon import: `postman/Spendly.postman_collection.json`
+3. Postman'de koleksiyon import — aşağıdaki **Import** bölümüne bakın.
 4. Koleksiyon değişkeni `baseUrl` = `http://localhost:3000` (varsayılan)
+
+## Postman — koleksiyonu içe aktarma
+
+### macOS (en hızlı)
+
+Terminalde proje klasöründen:
+
+```bash
+open -a Postman postman/Spendly.postman_collection.json
+```
+
+Postman açılır; **Import** penceresinde dosyayı onaylayın.
+
+### Elle import
+
+1. Postman → sol üst **Import**
+2. **Upload Files** → `postman/Spendly.postman_collection.json` seçin
+3. **Import** — sol panelde **Spendly API** koleksiyonu görünür
+4. Koleksiyona tıklayın → **Variables** → `baseUrl` = `http://localhost:3000`
+
+Eski koleksiyon varsa: **Spendly API** → sağ tık **Delete**, sonra yeniden import.
+
+### Terminalden tüm istekleri çalıştırma (Postman yerine)
+
+API ayaktayken (`npm start`):
+
+```bash
+npm install
+npm run test:postman
+```
+
+Bu, koleksiyondaki istekleri Newman ile sırayla gönderir (Postman import etmeden doğrulama).
 
 ## Önerilen test sırası (CRUD)
 
@@ -66,14 +98,11 @@ Sunucu her restart'ta bellek sıfırlanır; sırayı tek oturumda uygulayın.
 
 Method, endpoint ve ISO zaman damgası görünmeli.
 
-## Ekran görüntüleri (teslim — Stage 9)
+## Ekran görüntüleri (teslim)
 
-PDF teslim formu için Postman'den **5 CRUD** isteğinin ekran görüntüsünü alın (status + body görünsün). Dosyaları `docs/screenshots/` klasörüne kaydedin. Bu rehberde screenshot yer tutucu yoktur; görselleri siz üretirsiniz.
+Postman **CRUD** ekran görüntüleri repoda: `docs/screenshots/backend/` (01–06). Dosya adları:
 
-Önerilen dosya adları:
+- `01-post-create.png` … `05-delete.png` (zorunlu 5 adım)
+- `06-get-not-found.png` (silme sonrası 404 — önerilir)
 
-- `01-post-create.png`
-- `02-get-list.png`
-- `03-get-by-id.png`
-- `04-put-update.png`
-- `05-delete.png`
+PDF teslim formu için status + body görünsün. Frontend görselleri: `docs/screenshots/frontend/`.

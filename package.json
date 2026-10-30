@@ -4,7 +4,9 @@
   "description": "Spendly — basit harcama takip REST API (staj bitirme projesi)",
   "main": "src/server.js",
   "scripts": {
-    "start": "node src/server.js"
+    "start": "node src/server.js",
+    "test": "node --test tests/",
+    "test:postman": "newman run postman/Spendly.postman_collection.json"
   },
   "keywords": [
     "expense",
@@ -15,5 +17,8 @@
   "license": "ISC",
   "dependencies": {
     "express": "^5.3.0"
+  },
+  "devDependencies": {
+    "newman": "^6.2.3"
   }
 }

@@ -35,10 +35,31 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Kahve\",\n  \"amount\": 45,\n  \"category\": \"Food\",\n  \"description\": \"latte\",\n  \"date\": \"2026-10-14\"\n}"
+          "raw": "{\n  \"title\": \"Kahve\",\n  \"amount\": 45,\n  \"category\": \"Food\",\n  \"description\": \"latte\",\n  \"date\": \"2026-10-14\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": "{{baseUrl}}/api/expenses"
-      }
+      },
+      "event": [
+        {
+          "listen": "test",
+          "script": {
+            "type": "text/javascript",
+            "exec": [
+              "if (pm.response.code === 201) {",
+              "  const json = pm.response.json();",
+              "  if (json.data && json.data.id) {",
+              "    pm.collectionVariables.set('expenseId', String(json.data.id));",
+              "  }",
+              "}"
+            ]
+          }
+        }
+      ]
     },
     {
       "name": "List Expenses",
@@ -68,7 +89,12 @@
         ],
         "body": {
           "mode": "raw",
-          "raw": "{\n  \"title\": \"Kahve XL\",\n  \"amount\": 55,\n  \"category\": \"Food\",\n  \"description\": \"sütlü\",\n  \"date\": \"2026-10-15\"\n}"
+          "raw": "{\n  \"title\": \"Kahve XL\",\n  \"amount\": 55,\n  \"category\": \"Food\",\n  \"description\": \"sütlü\",\n  \"date\": \"2026-10-15\"\n}",
+          "options": {
+            "raw": {
+              "language": "json"
+            }
+          }
         },
         "url": "{{baseUrl}}/api/expenses/{{expenseId}}"
       }

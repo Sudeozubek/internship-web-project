@@ -69,7 +69,18 @@ CORS_ORIGIN=http://localhost:5173 npm start
 
 Detaylı kurulum, Netlify deploy ve checklist: [client/README.md](client/README.md)
 
-## Arayüz ekran görüntüleri
+## API ekran görüntüleri (Postman CRUD)
+
+Başlığa tıklayın; GitHub veya editörde tam boyut açılır. Test rehberi: [docs/POSTMAN_TESTING.md](docs/POSTMAN_TESTING.md)
+
+1. [POST — harcama oluştur (201)](docs/screenshots/backend/01-post-create.png)
+2. [GET — tüm harcamalar (200)](docs/screenshots/backend/02-get-list.png)
+3. [GET — id ile detay (200)](docs/screenshots/backend/03-get-by-id.png)
+4. [PUT — tam güncelleme (200)](docs/screenshots/backend/04-put-update.png)
+5. [DELETE — sil (200)](docs/screenshots/backend/05-delete.png)
+6. [GET — silinen kayıt (404)](docs/screenshots/backend/06-get-not-found.png)
+
+## Arayüz ekran görüntüleri (frontend)
 
 Başlığa tıklayın; GitHub veya editörde tam boyut açılır.
 

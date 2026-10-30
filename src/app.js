@@ -26,9 +26,22 @@ app.use((req, res, next) => {
   next();
 });
 
-// express.json() bir middleware'dir.
-// İstemci POST/PUT ile JSON gönderdiğinde gövdeyi okuyup req.body'ye yazması için bunu eklemem gerekir.
-app.use(express.json());
+// express.json() — Postman bazen Content-Type göndermeden raw JSON yollar; POST/PUT'ta gövde varsa yine parse ederim.
+app.use(
+  express.json({
+    type(req) {
+      if (!["POST", "PUT", "PATCH"].includes(req.method)) {
+        return false;
+      }
+      const contentType = req.headers["content-type"] || "";
+      const hasBody = Number(req.headers["content-length"] || 0) > 0;
+      if (!contentType) {
+        return hasBody;
+      }
+      return /json|text\/plain|application\/octet-stream/i.test(contentType);
+    },
+  }),
+);
 
 // Harcama API'si: router içindeki path'ler "/" ile başlar, burada önek "/api/expenses" eklenir.
 // Örnek: router.post("/") → dışarıdan POST /api/expenses
