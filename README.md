@@ -69,6 +69,14 @@ CORS_ORIGIN=http://localhost:5173 npm start
 
 Detaylı kurulum, Netlify deploy ve checklist: [client/README.md](client/README.md)
 
+## Arayüz ekran görüntüleri
+
+Başlığa tıklayın; GitHub veya editörde tam boyut açılır.
+
+- [Dashboard — özet, kategoriler, son harcamalar](docs/screenshots/frontend/01-dashboard.png)
+- [Harcamalar — liste, arama ve filtre](docs/screenshots/frontend/02-expenses-list.png)
+- [Yeni harcama — ekleme formu (modal)](docs/screenshots/frontend/03-add-expense-modal.png)
+
 ## Kurulum ve çalıştırma (API)
 
 ```bash

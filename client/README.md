@@ -107,6 +107,12 @@ Netlify yalnızca statik frontend sunar. Express API’yi Render, Railway, Fly.i
 | Liste boş | API bellekte; restart | Normal; yeni kayıt ekleyin |
 | Mixed content | HTTP API + HTTPS site | API’yi HTTPS yapın |
 
-## Ekran görüntüsü
+## Ekran görüntüleri
 
-Staj teslimi için uygulamadan en az bir görsel alın ve `docs/screenshots/frontend/` altına kaydedin (ör. `01-dashboard.png`).
+Başlığa tıklayarak tam boyutu açın (`docs/screenshots/frontend/`):
+
+- [Dashboard](../docs/screenshots/frontend/01-dashboard.png)
+- [Harcamalar listesi](../docs/screenshots/frontend/02-expenses-list.png)
+- [Yeni harcama modalı](../docs/screenshots/frontend/03-add-expense-modal.png)
+
+Netlify build sonrası aynı dosyalar `public/screenshots/` altından da `/screenshots/01-dashboard.png` ile erişilebilir.

@@ -1,7 +1,7 @@
-# Frontend ekran görüntüleri (staj teslimi)
+# Frontend ekran görüntüleri
 
-Bu klasöre çalışan uygulamadan en az **bir** görsel ekleyin.
+Staj teslimi ve README için. Dosya adına tıklayınca tam görsel açılır.
 
-Önerilen ad: `01-dashboard.png`
-
-Netlify canlı URL’inizi kök README veya staj formunda ayrıca belirtin.
+- [01 — Dashboard (özet, kategoriler, son harcamalar)](./01-dashboard.png)
+- [02 — Harcamalar listesi](./02-expenses-list.png)
+- [03 — Yeni harcama modalı](./03-add-expense-modal.png)
