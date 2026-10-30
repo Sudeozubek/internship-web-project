@@ -19,6 +19,8 @@ Basit harcama takip **REST API** — Node.js, Express.js ve bellek içi depolama
 
 ```text
 spendly-api/
+├── client/                   ← React frontend (Vite + Tailwind)
+├── netlify.toml              ← Netlify build (base: client)
 ├── src/
 │   ├── app.js
 │   ├── server.js
@@ -37,14 +39,37 @@ spendly-api/
 │   ├── DATA_MODEL.md
 │   ├── API_DESIGN.md
 │   ├── POSTMAN_TESTING.md
-│   └── screenshots/          ← Postman CRUD ekran görüntüleri (teslim)
+│   └── screenshots/          ← Postman + frontend görselleri
 ├── postman/
 │   └── Spendly.postman_collection.json
 ├── package.json
 └── README.md
 ```
 
-## Kurulum ve çalıştırma
+## Frontend (`client/`)
+
+React dashboard; tüm CRUD işlemleri bu API üzerinden yapılır.
+
+```bash
+# Terminal 1 — API
+npm start
+
+# Terminal 2 — arayüz
+cd client
+cp .env.example .env
+npm install
+npm run dev
+```
+
+Tarayıcı CORS için (Vite varsayılan portu):
+
+```bash
+CORS_ORIGIN=http://localhost:5173 npm start
+```
+
+Detaylı kurulum, Netlify deploy ve checklist: [client/README.md](client/README.md)
+
+## Kurulum ve çalıştırma (API)
 
 ```bash
 git clone <repo-url>
@@ -92,7 +117,14 @@ curl -X POST http://localhost:3000/api/expenses \
 
 - Veriler **yalnızca RAM**'de; sunucu yeniden başladığında silinir.
 - Kimlik doğrulama yok.
-- Filtreleme / sayfalama / raporlama yok.
+- Sunucu tarafında filtreleme / sayfalama / raporlama yok (frontend istemci tarafında arama/filtre yapar).
+
+## CORS (frontend / Netlify)
+
+Tarayıcıdan farklı origin ile istek için `src/app.js` içinde minimal CORS vardır.
+
+- Geliştirme: `CORS_ORIGIN=http://localhost:5173`
+- Production: `CORS_ORIGIN=https://SIZIN-SITE.netlify.app`
 
 ## GitHub'a yayınlama
 

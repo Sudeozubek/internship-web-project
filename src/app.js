@@ -14,6 +14,18 @@ const app = express();
 // bozuk JSON gibi durumlarda da isteğin method ve path'ini görebilirim.
 app.use(logger);
 
+// React (Netlify/Vite) farklı porttan istek atınca tarayıcı CORS ister; CRUD mantığına dokunmuyorum.
+app.use((req, res, next) => {
+  const allowedOrigin = process.env.CORS_ORIGIN || "*";
+  res.setHeader("Access-Control-Allow-Origin", allowedOrigin);
+  res.setHeader("Access-Control-Allow-Methods", "GET, POST, PUT, DELETE, OPTIONS");
+  res.setHeader("Access-Control-Allow-Headers", "Content-Type");
+  if (req.method === "OPTIONS") {
+    return res.sendStatus(204);
+  }
+  next();
+});
+
 // express.json() bir middleware'dir.
 // İstemci POST/PUT ile JSON gönderdiğinde gövdeyi okuyup req.body'ye yazması için bunu eklemem gerekir.
 app.use(express.json());

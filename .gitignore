@@ -3,7 +3,9 @@ node_modules/
 
 # Ortam değişkenleri — şifre veya gizli anahtar varsa burada tutulur.
 .env
-.env.*
+.env.local
+.env.*.local
+!.env.example
 
 # macOS klasör meta verisi
 .DS_Store
