@@ -57,7 +57,7 @@ npm test
 Repo kökünde [`netlify.toml`](../netlify.toml):
 
 - Frontend: `client/` → `dist`
-- **API:** `netlify/functions/expenses.js` — canlı sitede `/api/expenses` (Render **gerekmez**)
+- **API:** `netlify/functions/api.js` — canlı sitede `/api/expenses` (aynı Express kodu, Render **gerekmez**)
 
 ### GitHub → Netlify
 

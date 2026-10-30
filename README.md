@@ -2,6 +2,15 @@
 
 Basit harcama takip **REST API** — Node.js, Express.js ve bellek içi depolama ile staj bitirme projesi.
 
+## İki ödev, tek repo (backend + frontend)
+
+| Ödev | Nerede | Nasıl gösterilir |
+|------|--------|------------------|
+| **Backend (Express REST API)** | `src/`, `postman/`, `docs/` | `npm start` → Postman CRUD, `npm test`, `docs/screenshots/backend/` |
+| **Frontend (React + Netlify)** | `client/` | `npm run dev` (local), Netlify canlı URL, `docs/screenshots/frontend/` |
+
+Backend kodu **silinmedi**. Netlify tarafında [`netlify/functions/api.js`](netlify/functions/api.js) yalnızca **aynı** [`src/app.js`](src/app.js) dosyasını serverless ortamda çalıştırır; Postman ödevinle aynı route’lar ve controller’lar.
+
 ## Özellikler
 
 - Harcama CRUD (oluştur, listele, detay, tam güncelleme, sil)
@@ -21,6 +30,11 @@ Basit harcama takip **REST API** — Node.js, Express.js ve bellek içi depolama
 spendly-api/
 ├── client/                   ← React frontend (Vite + Tailwind)
 ├── netlify.toml              ← Netlify build (base: client)
+├── netlify/
+│   └── functions/
+│       └── api.js            ← Netlify only: src/app.js sarmalayıcı (backend ödevini değiştirmez)
+├── shared/
+│   └── expenseValidation.js  ← Express controller ile ortak doğrulama
 ├── src/
 │   ├── app.js
 │   ├── server.js
