@@ -54,48 +54,28 @@ npm test
 
 ## Netlify deploy
 
-Repo kökünde [`netlify.toml`](../netlify.toml) tanımlı:
+Repo kökünde [`netlify.toml`](../netlify.toml):
 
-| Ayar | Değer |
-|------|--------|
-| Base directory | `client` |
-| Build command | `npm run build` |
-| Publish directory | `dist` |
-| SPA redirect | `/* → /index.html` (200) |
+- Frontend: `client/` → `dist`
+- **API:** `netlify/functions/expenses.js` — canlı sitede `/api/expenses` (Render **gerekmez**)
 
 ### GitHub → Netlify
 
-1. Projeyi **public** GitHub repo’ya push edin (backend + `client/` birlikte).
-2. [Netlify](https://app.netlify.com) → **Add new site** → **Import an existing project** → GitHub → repo seçin.
-3. Ayarlar `netlify.toml` ile gelir; gerekirse Base directory = `client` doğrulayın.
-4. **Site configuration → Environment variables** → **Add**:
-   - Key: `VITE_API_URL`
-   - Value: deploy edilmiş API URL (ör. `https://spendly-api.onrender.com`) — **localhost kullanmayın**
-5. Deploy. Canlı site URL’ini kopyalayın (staj teslimi).
-6. Backend host’ta `CORS_ORIGIN` = Netlify site URL (ör. `https://spendly-app.netlify.app`), ardından API’yi yeniden deploy edin.
+1. Repoyu GitHub’a push et.
+2. Netlify → Import repo → deploy.
+3. **`VITE_API_URL` ekleme** — boş bırak; frontend aynı domaindeki `/api` yolunu kullanır.
+4. Kod güncellediysen: **Clear cache and deploy**.
 
-Env değiştirdiğinizde **Deploys → Trigger deploy → Clear cache and deploy site**.
-
-### Backend (Netlify dışında)
-
-Netlify yalnızca statik frontend sunar. Express API’yi Render, Railway, Fly.io vb. üzerinde ayrı çalıştırın:
-
-- `PORT` platform tarafından verilir
-- Public HTTPS URL → frontend `VITE_API_URL`
-- `CORS_ORIGIN` = Netlify origin (sondaki `/` olmadan)
+Local `.env`: `VITE_API_URL=http://localhost:3000` (Express için).
 
 ## Deployment checklist
 
 1. Public GitHub repo
-2. `netlify.toml` commit edildi
-3. `.env.example` var; `.env` commit edilmedi
-4. Netlify’da `VITE_API_URL` = production API
-5. Backend `CORS_ORIGIN` = Netlify URL
-6. Netlify build başarılı
-7. Canlı sitede dashboard ve harcamalar açılıyor
-8. Canlı sitede CRUD çalışıyor
-9. `/expenses/1` gibi URL’de F5 → 404 yok
-10. En az bir ekran görüntüsü (`docs/screenshots/frontend/`)
+2. `netlify.toml` + `netlify/functions/` commit edildi
+3. Netlify build başarılı
+4. Canlı sitede CRUD çalışıyor
+5. `/expenses/...` sayfasında F5 → SPA 200
+6. En az bir frontend screenshot
 
 ## Troubleshooting
 

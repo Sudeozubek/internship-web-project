@@ -1,8 +1,24 @@
-# Monorepo: frontend client/ klasöründe; backend ayrı deploy edilir.
+# Frontend: client/ | Canlı API: Netlify Functions (ayrı Render gerekmez)
 [build]
   base = "client"
   command = "npm run build"
   publish = "dist"
+
+[functions]
+  directory = "netlify/functions"
+
+# API — SPA redirect'ten ÖNCE olmalı
+[[redirects]]
+  from = "/api/expenses"
+  to = "/.netlify/functions/expenses"
+  status = 200
+  force = true
+
+[[redirects]]
+  from = "/api/expenses/*"
+  to = "/.netlify/functions/expenses/:splat"
+  status = 200
+  force = true
 
 [[redirects]]
   from = "/*"

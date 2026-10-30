@@ -1,13 +1,19 @@
 import axios from "axios";
 
-const baseURL = import.meta.env.VITE_API_URL;
-
-if (!baseURL) {
-  console.warn("VITE_API_URL tanımlı değil. .env dosyasını kontrol et.");
+// Local: .env içinde VITE_API_URL=http://localhost:3000
+// Netlify: boş bırak → aynı sitedeki /api/expenses (Functions) kullanılır
+function resolveBaseURL() {
+  const fromEnv = import.meta.env.VITE_API_URL;
+  if (typeof fromEnv === "string" && fromEnv.trim() !== "") {
+    return fromEnv.trim().replace(/\/$/, "");
+  }
+  return "";
 }
 
+const baseURL = resolveBaseURL();
+
 const api = axios.create({
-  baseURL,
+  baseURL: baseURL || undefined,
   headers: { "Content-Type": "application/json" },
 });
 

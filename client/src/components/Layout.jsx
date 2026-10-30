@@ -44,7 +44,7 @@ export default function Layout() {
           ))}
         </nav>
         <p className="border-t border-slate-800 px-4 py-3 text-xs text-slate-500">
-          Veriler API belleğinde tutulur.
+          Local: Express API · Netlify: aynı sitede /api
         </p>
       </aside>
 
