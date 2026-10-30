@@ -57,7 +57,7 @@ npm test
 Repo kökünde [`netlify.toml`](../netlify.toml):
 
 - Frontend: `client/` → `dist`
-- **API:** `netlify/functions/api.js` — canlı sitede `/api/expenses` (aynı Express kodu, Render **gerekmez**)
+- **API:** `client/netlify/functions/expenses.js` — `/api/expenses` (Express veri katmanı + doğrulama). `VITE_API_URL` yoksa build **localStorage demo** (404 olmaz).
 
 ### GitHub → Netlify
 

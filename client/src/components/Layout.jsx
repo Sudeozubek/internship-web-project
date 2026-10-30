@@ -7,6 +7,7 @@ import {
   X,
   Wallet,
 } from "lucide-react";
+import { isLocalDemoMode } from "../services/expensesApi";
 
 const navItems = [
   { to: "/", label: "Dashboard", icon: LayoutDashboard, end: true },
@@ -44,7 +45,9 @@ export default function Layout() {
           ))}
         </nav>
         <p className="border-t border-slate-800 px-4 py-3 text-xs text-slate-500">
-          Local: Express API · Netlify: aynı sitede /api
+          {isLocalDemoMode()
+            ? "Canlı demo: veriler tarayıcıda (local). Backend ödevi: npm start + Postman."
+            : "Local: Express API · Netlify: /api Functions"}
         </p>
       </aside>
 

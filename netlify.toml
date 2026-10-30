@@ -1,22 +1,21 @@
-# Frontend: client/ | API: Netlify Function (Express)
+# Frontend: client/ | Netlify Function yalnızca client/ altında (src/ backend'e dokunmaz)
 [build]
   base = "client"
-  command = "npm install --prefix .. && npm run build"
+  command = "npm run build"
   publish = "dist"
 
 [functions]
-  directory = "netlify/functions"
-  included_files = ["src/**", "shared/**"]
+  directory = "client/netlify/functions"
 
 [[redirects]]
   from = "/api/expenses"
-  to = "/.netlify/functions/api"
+  to = "/.netlify/functions/expenses"
   status = 200
   force = true
 
 [[redirects]]
   from = "/api/expenses/*"
-  to = "/.netlify/functions/api"
+  to = "/.netlify/functions/expenses"
   status = 200
   force = true
 
