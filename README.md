@@ -1,4 +1,4 @@
-# Spendly API
+# Software Persona Backend ve Web Geliştirme Projeleri
 
 Basit harcama takip **REST API** — Node.js, Express.js ve bellek içi depolama ile staj bitirme projesi.
 
